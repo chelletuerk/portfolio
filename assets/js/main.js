@@ -185,11 +185,11 @@
 						console.log('click')
 
 						var templateParams = {
-							  to_name: 'chelle',
+							  to_name: 'Chelle',
 						    name: $('#name').val(),
 						    email: $('#email').val(),
 								message: $('#message').val(),
-						};
+						}
 
 						emailjs.send("service_ajo3byp","template_2xgbmag", templateParams)
 						// emailjs.send('service_ajo3byp', 'YOUR_TEMPLATE_ID', templateParams)
@@ -197,11 +197,27 @@
 						       console.log('SUCCESS!', response.status, response.text);
 						    }, function(error) {
 						       console.log('FAILED...', error)
-						    });
+						    })
 
-						$('#name').val('')
-						$('#email').val('')
-						$('#message').val('')
+
+
+						var replyTemplateParams = {
+								name: $('#name').val(),
+								email: $('#email').val(),
+						}
+
+
+						emailjs.send("service_ajo3byp","template_acme40i", replyTemplateParams)
+						// emailjs.send('service_ajo3byp', 'YOUR_TEMPLATE_ID', templateParams)
+								.then(function(response) {
+									 console.log('SUCCESS!', response.status, response.text);
+								}, function(error) {
+									 console.log('FAILED...', error)
+								})
+
+								$('#name').val('')
+								$('#email').val('')
+								$('#message').val('')
 
 					})
 
