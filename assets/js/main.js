@@ -25,6 +25,7 @@
 			xxsmall:   [null,       '360px'    ]
 		});
 
+
 	/**
 	 * Applies parallax scrolling to an element's background image.
 	 * @return {jQuery} jQuery object.
@@ -178,6 +179,32 @@
 							.removeClass('alt');
 
 				});
+
+					$('.submit').click((e) => {
+						e.preventDefault()
+						console.log('click')
+
+						var templateParams = {
+							  to_name: 'chelle',
+						    name: $('#name').val(),
+						    email: $('#email').val(),
+								message: $('#message').val(),
+						};
+
+						emailjs.send("service_ajo3byp","template_2xgbmag", templateParams)
+						// emailjs.send('service_ajo3byp', 'YOUR_TEMPLATE_ID', templateParams)
+						    .then(function(response) {
+						       console.log('SUCCESS!', response.status, response.text);
+						    }, function(error) {
+						       console.log('FAILED...', error)
+						    });
+
+						$('#name').val('')
+						$('#email').val('')
+						$('#message').val('')
+
+					})
+
 
 				breakpoints.on('<=medium', function() {
 
