@@ -180,46 +180,46 @@
 
 				});
 
-					$('.submit').click((e) => {
-						e.preventDefault()
-						console.log('click')
+				$('.submit').click((e) => {
+					e.preventDefault()
+					console.log('click')
 
-						var templateParams = {
-							  to_name: 'Chelle',
-						    name: $('#name').val(),
-						    email: $('#email').val(),
-								message: $('#message').val(),
-						}
+					var templateParams = {
+						  to_name: 'Chelle',
+					    name: DOMPurify.sanitize($('#name').val()),
+					    email: DOMPurify.sanitize($('#email').val()),
+							message: DOMPurify.sanitize($('#message').val()),
+					}
 
-						emailjs.send("service_ajo3byp","template_2xgbmag", templateParams)
-						// emailjs.send('service_ajo3byp', 'YOUR_TEMPLATE_ID', templateParams)
-						    .then(function(response) {
-						       console.log('SUCCESS!', response.status, response.text);
-						    }, function(error) {
-						       console.log('FAILED...', error)
-						    })
-
-
-
-						var replyTemplateParams = {
-								name: $('#name').val(),
-								email: $('#email').val(),
-						}
+					emailjs.send("service_ajo3byp","template_2xgbmag", templateParams)
+					// emailjs.send('service_ajo3byp', 'YOUR_TEMPLATE_ID', templateParams)
+					    .then(function(response) {
+					       console.log('SUCCESS!', response.status, response.text);
+					    }, function(error) {
+					       console.log('FAILED...', error)
+					    })
 
 
-						emailjs.send("service_ajo3byp","template_acme40i", replyTemplateParams)
-						// emailjs.send('service_ajo3byp', 'YOUR_TEMPLATE_ID', templateParams)
-								.then(function(response) {
-									 console.log('SUCCESS!', response.status, response.text);
-								}, function(error) {
-									 console.log('FAILED...', error)
-								})
 
-								$('#name').val('')
-								$('#email').val('')
-								$('#message').val('')
+						let replyTemplateParams = {
+								name: DOMPurify.sanitize($('#name').val()),
+								email: DOMPurify.sanitize($('#email').val()),
+					}
 
-					})
+
+					emailjs.send("service_ajo3byp","template_acme40i", replyTemplateParams)
+					// emailjs.send('service_ajo3byp', 'YOUR_TEMPLATE_ID', templateParams)
+							.then(function(response) {
+								 console.log('SUCCESS!', response.status, response.text);
+							}, function(error) {
+								 console.log('FAILED...', error)
+							})
+
+					DOMPurify.sanitize($('#name').val(''))
+					DOMPurify.sanitize($('#email').val(''))
+					DOMPurify.sanitize($('#message').val(''))
+
+				})
 
 
 				breakpoints.on('<=medium', function() {
